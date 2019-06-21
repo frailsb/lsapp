@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-	<a href="/posts" class="btn btn-default">Go Back</a>
+	<a href="/posts" class="btn btn-outline-secondary mb-4">Go Back</a>
 	<h1>
 		{{ $post->title }}
 	</h1>
 	<p>
-		{{ $post->body }}
+		{!! $post->body !!}
 	</p>
 	<hr>
 	<small>
