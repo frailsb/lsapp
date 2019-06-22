@@ -91,14 +91,14 @@ class PostsController extends Controller
             'body' => 'required'
         ]);
 
-        // Save Post
-        $post = Post::find($post->id);
+        // Update Post
+        $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
 
         // Redirect with message
-        return redirect('/posts')->with('success', 'Post Created');
+        return redirect('/posts')->with('success', 'Post Updated');
     }
 
     /**
@@ -109,6 +109,9 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect('/posts')->with('success', 'Post Deleted');
     }
 }
