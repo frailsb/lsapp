@@ -12,4 +12,6 @@
 	<small>
 		Written on {{ $post->created_at }}
 	</small>
+	<hr>
+	<a href="/posts/{{ $post->title }}/edit" class="btn btn-outline-info">Edit</a>
 @endsection
