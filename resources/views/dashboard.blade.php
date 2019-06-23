@@ -15,6 +15,31 @@
                     @endif
                     <a href="/posts/create" class="mb-3 btn btn-primary">Create Post</a>
                     <h3>Your Blog Posts</h3>
+                    @if(count($posts) > 0)
+                        <table  class="table table-striped">
+                            <tr>
+                                <th>Title</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            @foreach($posts as $post)
+                                <tr>
+                                    <td>{{ $post->title }}</td>
+                                    <td>
+                                        <a href="/posts/{{ $post->id }}/edit" class="btn btn-success">Edit</a>
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right']) !!}
+                                            {!! Form::hidden('_method', 'DELETE') !!}
+                                            {!! Form::submit('DELETE', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    @else
+                        <p>You have no posts</p>
+                    @endif
                 </div>
             </div>
         </div>

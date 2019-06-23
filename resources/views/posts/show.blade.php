@@ -10,7 +10,7 @@
 	</p>
 	<hr>
 	<small>
-		Written on {{ $post->created_at }}
+		Written on {{ $post->created_at }} by {{ $post->user->name }}
 	</small>
 	<hr>
 	<a href="/posts/{{ $post->id }}/edit" class="btn btn-success">Edit</a>
