@@ -6,9 +6,12 @@
     	<p>
         	This is the laravel application from the "Laravel From Scratch" Youtube series
     	</p>
-    	<p>
-    		<a href="/login" class="btn btn-primary btn-lg" role="button">Login</a>
-    		<a href="/register" class="btn btn-success btn-lg" role="button">Register</a>
-    	</p>
+    	@if(!Auth::guest())
+        @else
+            <p>
+                <a href="/login" class="btn btn-primary btn-lg" role="button">Login</a>
+                <a href="/register" class="btn btn-success btn-lg" role="button">Register</a>
+            </p>
+        @endif
     </div>
 @endsection
