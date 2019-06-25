@@ -51,9 +51,10 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
 
+        // Handle file upload
         if($request->hasFile('cover_image')) {
             // Get filename with the extension
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
@@ -69,7 +70,7 @@ class PostsController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
 
-        // Save Post
+        // Create post
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -166,11 +167,10 @@ class PostsController extends Controller
         if(auth()->user()->id != $post->user_id) {
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
-
         if($post->cover_image != 'noimage.jpg') {
             // Delete image
-            Storage::delete('test.png');
-        }   
+            Storage::delete("public/cover_images/$post->cover_image");
+        }
         $post->delete();
 
         return redirect('/posts')->with('success', 'Post Deleted');
