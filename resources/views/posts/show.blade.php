@@ -5,6 +5,7 @@
 	<h1>
 		{{ $post->title }}
 	</h1>
+	<img class="w-100" src="/storage/cover_images/{{ $post->cover_image }}" alt="">
 	<p>
 		{!! $post->body !!}
 	</p>
