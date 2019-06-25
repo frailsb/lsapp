@@ -9,16 +9,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}">
           <a class="nav-link" href="/">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (request()->is('about')) ? 'active' : '' }}">
           <a class="nav-link" href="/about">About</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (request()->is('services')) ? 'active' : '' }}">
           <a class="nav-link" href="/services">Services</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (request()->is('posts*')) ? 'active' : '' }}">
           <a class="nav-link" href="/posts">Blog</a>
         </li>
       </ul>
@@ -28,10 +28,10 @@
         <!-- Authentication Links -->
         @guest
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a class="nav-link {{ (request()->is('login')) ? 'active' : '' }}" href="{{ route('login') }}">{{ __('Login') }}</a>
           </li>
           @if (Route::has('register'))
-            <li class="nav-item">
+            <li class="nav-item {{ (request()->is('register')) ? 'active' : '' }}">
               <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
             </li>
           @endif
